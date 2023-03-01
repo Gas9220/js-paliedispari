@@ -33,11 +33,33 @@ function isPalindrome(word) {
     return false;
 }
 
+// Funzione che aggiunge degli elementi ad una lista
+function addListItem(input, list) {
+    const li = document.createElement('li')
+
+    if (isPalindrome(input)) {
+        li.classList.add('text-success');
+        li.innerHTML = `'${input}' is a palindrome word`;
+    } else {
+        li.classList.add('text-danger');
+        li.innerHTML = `'${input}' is not a palindrome word`;
+    }
+
+    list.appendChild(li);
+}
+
 // ---------- END Functions ---------- //
 
+// Riferimenti HTML
+const checkBtn = document.getElementById('check-palindrome');
+const wordInput = document.getElementById('word-input');
+const timelineListElement = document.getElementById('timeline');
 
-// Chiedo la parola all'utente
-// const input = prompt('Inserisci una parola');
-
-// Verifico se è palindroma
-// console.log(isPalindrome(input));
+checkBtn.addEventListener('click',
+    function() {
+        // Ad ogni click aggiungo un li alla lista
+        addListItem(wordInput.value, timelineListElement)
+        // Resetto l'input
+        wordInput.value = ""
+    }
+)
